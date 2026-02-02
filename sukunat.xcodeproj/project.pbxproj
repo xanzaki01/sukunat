@@ -10,22 +10,9 @@
 		FF6A05A22ECB71EF00D90835 /* sukunat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sukunat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		FF6A05B42ECB71F000D90835 /* Exceptions for "sukunat" folder in "sukunat" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = FF6A05A12ECB71EF00D90835 /* sukunat */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FF6A05A42ECB71EF00D90835 /* sukunat */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				FF6A05B42ECB71F000D90835 /* Exceptions for "sukunat" folder in "sukunat" target */,
-			);
 			path = sukunat;
 			sourceTree = "<group>";
 		};
