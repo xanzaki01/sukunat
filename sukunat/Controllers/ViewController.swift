@@ -5,6 +5,7 @@
 //  Created by Xan Xanzaki on 17/11/25.
 //
 
+
 import UIKit
 
 class ViewController: UIViewController {
@@ -70,7 +71,19 @@ extension ViewController: UISearchResultsUpdating{
     }
 }
 // MARK: - TABLE VIEW MAIN FUNCTION
-extension ViewController: UITableViewDelegate, UITableViewDataSource{
+extension ViewController: UITableViewDelegate, UITableViewDataSource, PlacesViewDelegate{
+    func didSelectPlace(place: PlacesModel) {
+        let detailsVC = PlacesdDetailsVC()
+        
+        // Ma'lumotlarni uzatamiz
+        detailsVC.selectedPlaceName = place.placesNames
+        detailsVC.selectedImage = place.placesImage
+        detailsVC.selectedLocation = place.placesLocationName
+        
+        // Sahifaga o'tamiz
+        self.navigationController?.pushViewController(detailsVC, animated: true)
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -81,6 +94,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: PlacesViewCell.identifier, for: indexPath) as! PlacesViewCell
+            cell.delegate = self
             cell.backgroundColor = .clear
             return cell
         }
@@ -98,14 +112,14 @@ extension UIColor {
     convenience init(hex: String) {
         var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
         hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
-
+        
         var rgb: UInt64 = 0
         Scanner(string: hexSanitized).scanHexInt64(&rgb)
-
+        
         let r = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
         let g = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
         let b = CGFloat(rgb & 0x0000FF) / 255.0
-
+        
         self.init(red: r, green: g, blue: b, alpha: 1)
     }
 }

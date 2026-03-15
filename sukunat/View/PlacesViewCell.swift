@@ -5,10 +5,18 @@
 //  Created by Xan Xanzaki on 21/11/25.
 //
 
+
+protocol PlacesViewDelegate: AnyObject {
+    func didSelectPlace(place: PlacesModel)
+}
+
 import UIKit
 class PlacesViewCell: UITableViewCell{
     
     // MARK: - VARIABLES
+    
+    weak var delegate: PlacesViewDelegate?
+    
     static let identifier = "PlacesViewCell"
     var selectedIndex = 0
     
@@ -126,7 +134,10 @@ extension PlacesViewCell:  UICollectionViewDelegate, UICollectionViewDataSource,
             
             let selectedCategory = recommendationArray[indexPath.row]
             filterPlace(selected: selectedCategory)
-            
+        }
+        if collectionView == placesCollectionView{
+            let selectedPlace = filteredArray[indexPath.item]
+            delegate?.didSelectPlace(place: selectedPlace)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -137,5 +148,4 @@ extension PlacesViewCell:  UICollectionViewDelegate, UICollectionViewDataSource,
             return CGSize(width: 100, height: 50)
         }
     }
-    
 }

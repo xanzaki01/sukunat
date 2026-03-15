@@ -8,6 +8,10 @@
 import UIKit
 class PlacesdDetailsVC: UIViewController{
     
+    var selectedPlaceName: String?
+    var selectedImage: UIImage?
+    var selectedLocation: String?
+    
     let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -29,6 +33,25 @@ class PlacesdDetailsVC: UIViewController{
         view.backgroundColor = .white
         setUPNavigationBar()
         setUPUI()
+        
+        if let image = selectedImage {
+                // 'placeImageView' ichidagi 'imageView' ga rasm qo'yamiz
+                placeImageView.imageView.image = image
+            }
+            
+            if let title = selectedPlaceName {
+                // 'placeImageView' ichidagi 'placeName' labeliga nom qo'yamiz
+                placeImageView.placeName.text = title
+            }
+            
+            if let location = selectedLocation {
+                // 'placeImageView' ichidagi 'locationName' labeliga joy nomini qo'yamiz
+                placeImageView.locationName.text = location
+            }
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollView.contentInsetAdjustmentBehavior = .never
     }
     private func setUPNavigationBar(){
         edgesForExtendedLayout = .top
@@ -48,6 +71,7 @@ class PlacesdDetailsVC: UIViewController{
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         backButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
         
         let backBarItem = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem = backBarItem
@@ -69,10 +93,20 @@ class PlacesdDetailsVC: UIViewController{
         let favBarItem = UIBarButtonItem(customView: favoriteButton)
         navigationItem.rightBarButtonItem = favBarItem
         
+        navigationController?.navigationBar.barStyle = .black
+        
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        
         navigationController?.navigationBar.standardAppearance = apperance
         navigationController?.navigationBar.scrollEdgeAppearance = apperance
         navigationController?.navigationBar.isTranslucent = true
         navigationItem.hidesBackButton = true
+    }
+    @objc func backTapped(){
+        navigationController?.popViewController(animated: true)
     }
     private func setUPUI(){
         placeImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -83,17 +117,16 @@ class PlacesdDetailsVC: UIViewController{
         contentView.addSubview(placeImageView)
         contentView.addSubview(infoView)
         
-        
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
-        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
-        contentView.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor).isActive = true
+        contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor).isActive = true
+        contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor).isActive = true
+        contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor).isActive = true
         
         placeImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         placeImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
@@ -105,5 +138,11 @@ class PlacesdDetailsVC: UIViewController{
         infoView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
         infoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
+        infoView.layer.cornerRadius = 30
+        infoView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        infoView.clipsToBounds = true
+        infoView.backgroundColor = .white
+        
     }
+    
 }

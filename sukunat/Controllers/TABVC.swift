@@ -20,7 +20,7 @@ class TABVC: UITabBarController {
         generateControllers()
         setView()
     }
-
+    
     @objc func buttonsClicked(_ sender: UIButton) {
         selectedIndex = sender.tag
         
@@ -59,13 +59,13 @@ class TABVC: UITabBarController {
         tabbarView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         tabbarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         tabbarView.layer.cornerRadius = 30
-
+        
         // Ensure the buttons array is not empty
         if buttons.isEmpty {
             print("buttons array is empty")
             return
         }
-
+        
         tabbarView.addSubview(tabbarItemBackgroundView)
         tabbarItemBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         tabbarItemBackgroundView.widthAnchor.constraint(equalTo: tabbarView.widthAnchor, multiplier: 1/CGFloat(buttons.count), constant: -10).isActive = true
@@ -77,8 +77,8 @@ class TABVC: UITabBarController {
         tabbarItemBackgroundView.layer.shadowOpacity = 0.12
         tabbarItemBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 4)
         tabbarItemBackgroundView.layer.shadowRadius = 6
-
-
+        
+        
         // Add buttons to the tabbarView
         for i in 0..<buttons.count {
             let button = buttons[i]
@@ -89,7 +89,7 @@ class TABVC: UITabBarController {
             button.widthAnchor.constraint(equalTo: tabbarView.widthAnchor, multiplier: 1/CGFloat(buttons.count)).isActive = true
             button.heightAnchor.constraint(equalTo: tabbarView.heightAnchor).isActive = true
             button.addTarget(self, action: #selector(buttonsClicked), for: .touchUpInside)
-
+            
             // Set the button's position
             if i == 0 {
                 button.leftAnchor.constraint(equalTo: tabbarView.leftAnchor).isActive = true
@@ -97,7 +97,7 @@ class TABVC: UITabBarController {
                 button.leftAnchor.constraint(equalTo: buttons[i - 1].rightAnchor).isActive = true
             }
         }
-
+        
         // Initially set the center constraint for the background view
         if let firstButton = buttons.first {
             centerConstraint = tabbarItemBackgroundView.centerXAnchor.constraint(equalTo: firstButton.centerXAnchor)
@@ -105,14 +105,14 @@ class TABVC: UITabBarController {
             firstButton.tintColor = UIColor(red: 35/255, green: 35/255, blue: 35/255, alpha: 1)
         }
     }
-
+    
     private func generateControllers() {
         let mainMenu = generateViewControllers(image: UIImage(named: "home-2")!, vc: ViewController())
         let mapView = generateViewControllers(image: UIImage(named: "travelling")!, vc: MapVC())
         let favourite = generateViewControllers(image: UIImage(named: "heart")!, vc: FavoriteVC())
         viewControllers = [mainMenu, mapView, favourite]
     }
-
+    
     private func generateViewControllers(image: UIImage, vc: UIViewController) -> UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false

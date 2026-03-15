@@ -6,13 +6,30 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FF6844BD2F673FE7006E1B88 /* MapLibre in Frameworks */ = {isa = PBXBuildFile; productRef = FF6844BC2F673FE7006E1B88 /* MapLibre */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		FF6A05A22ECB71EF00D90835 /* sukunat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sukunat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FF6844552F324795006E1B88 /* Exceptions for "sukunat" folder in "sukunat" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FF6A05A12ECB71EF00D90835 /* sukunat */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FF6A05A42ECB71EF00D90835 /* sukunat */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FF6844552F324795006E1B88 /* Exceptions for "sukunat" folder in "sukunat" target */,
+			);
 			path = sukunat;
 			sourceTree = "<group>";
 		};
@@ -23,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF6844BD2F673FE7006E1B88 /* MapLibre in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +83,7 @@
 			);
 			name = sukunat;
 			packageProductDependencies = (
+				FF6844BC2F673FE7006E1B88 /* MapLibre */,
 			);
 			productName = sukunat;
 			productReference = FF6A05A22ECB71EF00D90835 /* sukunat.app */;
@@ -94,6 +113,9 @@
 			);
 			mainGroup = FF6A05992ECB71EF00D90835;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FF6844BB2F673FE7006E1B88 /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FF6A05A32ECB71EF00D90835 /* Products */;
 			projectDirPath = "";
@@ -324,6 +346,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FF6844BB2F673FE7006E1B88 /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maplibre/maplibre-gl-native-distribution";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.24.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FF6844BC2F673FE7006E1B88 /* MapLibre */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF6844BB2F673FE7006E1B88 /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */;
+			productName = MapLibre;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FF6A059A2ECB71EF00D90835 /* Project object */;
 }

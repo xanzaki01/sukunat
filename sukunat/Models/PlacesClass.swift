@@ -95,3 +95,4 @@ class CategoryClass{
         CategoryModel(categoryImage: UIImage(named: "bookstore")!, categoryName: "Bookstore", type: "bookstore"),
     ]
 }
+
